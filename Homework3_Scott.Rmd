@@ -7,7 +7,7 @@ output: pdf_document
 [Link to my Github repo:](https://github.com/ryannrliu/Homework-3-Scott)
 https://github.com/ryannrliu/Homework-3-Scott
 
-```{r setup, echo=FALSE}
+```{r setup, echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(ggplot2)
@@ -24,7 +24,7 @@ ebay <- read.csv('ebay.csv')
 # **Problem 1: Gas Station Theories**
 
 ### **Part A**
-1) Claim:Gas stations charge more if they lack direct competition in 2) sight.
+1) Claim: Gas stations charge more if they lack direct competition in 2) sight.
 2) Evidence: The difference in mean prices between both groups (No competition vs. Yes) lies between -0.06 and 0.01, with 95% confidence. The graphs also show relatively similar prices between each group.
 3) Conclusion: This theory is unsupported by the data. 
 

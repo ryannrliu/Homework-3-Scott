@@ -4,8 +4,10 @@ author: "Ryann Liu (rl35976)"
 date: "2025-01-28"
 output: pdf_document
 ---
+[Link to my Github repo:](https://github.com/ryannrliu/Homework-3-Scott)
+https://github.com/ryannrliu/Homework-3-Scott
 
-```{r setup, include=FALSE}
+```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(ggplot2)
@@ -26,7 +28,7 @@ ebay <- read.csv('ebay.csv')
 2) Evidence: The difference in mean prices between both groups (No competition vs. Yes) lies between -0.06 and 0.01, with 95% confidence. The graphs also show relatively similar prices between each group.
 3) Conclusion: This theory is unsupported by the data. 
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 #Part A
 comp_name <- c("No (No other Gas Stations)", "Yes (Gas Stations in Sight)")
 names(comp_name) <- c("N", "Y")
@@ -42,7 +44,7 @@ confint(boot_comp, level = 0.95)
 2) Evidence: From the graph, there is a positive correlation between income and gas price. So, as income increases, gas price also increases. The correlation coefficient between the two variables is `r round(cor(gas$Price, gas$Income), 2)`, so there is a moderately strong positive correlation. 
 3) Conclusion: The theory is supported by the data. 
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 #Part B
 gas <- mutate(gas, "Income (in thousands)" = Income/1000)
 ggplot(gas) + geom_point(aes(x=Price, y=`Income (in thousands)`), pch=20) + labs(title="Does Income Affect Gas Price?", x="Price (dollars)")
@@ -53,7 +55,7 @@ ggplot(gas) + geom_point(aes(x=Price, y=`Income (in thousands)`), pch=20) + labs
 2) Evidence: The difference in mean gas price between each group(By a stoplight vs. not by a light) lies between -0.04 and 0.03, with 95% confidence. The graphs also show relatively similar prices between each group.
 3) Conclusion: This theory is unsupported by the data.
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 #Part C
 light_name <- c("No (Not by a stoplight)", "Yes (Near a stoplight)")
 names(light_name) <- c("N", "Y")
@@ -69,7 +71,7 @@ confint(boot_light, level = 0.95)
 2) Evidence: The difference in mean gas price between the two groups (highway access vs. no direct highway access) lies between 0.01 and 0.08, with 95% confidence. The graphs show that gas stations without direct highway access charge more.
 3) Conclusion: The theory is unsupported by the data, as it appears that gas stations without direct highway access charge more. 
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 #Part D
 hw_name <- c("No (No direct highway access)", "Yes (has direct highway access)")
 names(hw_name) <- c("N", "Y")
@@ -85,7 +87,7 @@ confint(boot_hw, level = 0.95)
 2) Evidence: The difference in mean gas price between the two groups (Shell vs. Non-Shell) lies between -0.01 and 0.07, with 95% confidence. The graphs also show no significant difference in price between Shell and non-Shell brands.
 3) Conclusion: The theory is unsupported by the data. 
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 #Part E
 gas <- mutate(gas, isShell = Brand=="Shell")
 brand_name <- c("Shell", "Not Shell")
@@ -103,7 +105,7 @@ For each of these questions, I created a sample of each bootstrap, a confidence 
 ### **Part A**
 The bootstrap suggests that the true population parameter (average mileage of 2011 S-Class 63 AMGs that were used) lies within the interval 26,907 to 34,802, with 95% confidence.
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 #Part A
 sclass2011 <- filter(sclass, year==2011 & trim=="63 AMG")
 boot_sclass2011 = do(10000)*mean(mileage ~ condition,
@@ -118,7 +120,7 @@ ggplot(data=boot_sclass2011) +
 ### **Part B**
 The bootstrap suggests that the true population parameter (2014 S-Class 550s that were painted black) lies within the interval 0.416 to 0.452, with 95% confidence.
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 #Part B
 sclass2014 <- filter(sclass, year==2014 & trim==550)
 sclass2014 <- mutate(sclass2014, isBlack = color=="Black")
@@ -139,7 +141,7 @@ ggplot(data=boot_sclass2014) +
 3) Results: The difference of mean viewer response to the "Happy" question between the two shows lies somewhere between -0.39 and 0.10, with 95% confidence. 
 4) Conclusion: Because the estimated mean difference is relatively small (< 0.5), both shows consistently produce the same average response to the "Happy" question. So, both shows make people equally happy. 
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 #Part A
 ed_earl <- filter(nbc, Show=="Living with Ed" | Show=="My Name is Earl")
 boot_ed_earl = do(10000)*diffmean(Q1_Happy ~ Show,
@@ -157,7 +159,7 @@ ggplot(data=boot_ed_earl) +
 3) Results: The difference of mean viewer response to the "Annoyed" question between the two shows lies somewhere between -0.52 and -0.02, with 95% confidence. 
 4) Conclusion: Because the estimated mean difference is relatively small (< 0.5), both shows consistently produce the same average response to the "Annoyed" question. So, both shows make people equally annoyed. 
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 #Part B
 loser_app <- filter(nbc, Show=="The Apprentice: Los Angeles" | Show=="The Biggest Loser")
 boot_loser_app = do(10000)*diffmean(Q1_Annoyed ~ Show, data=resample(loser_app))
@@ -174,7 +176,7 @@ ggplot(data=boot_loser_app) +
 3) Results: The proportion of the population that is estimated to respond that "Dancing with the Stars" is confusing lies between 0.03 and 0.11, with 95% confidence.   
 4) Conclusion: The estimated percentage of people to respond that "Dancing with the Stars" is confusing is very low, showing that not many people are expected to find the show confusing. 
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 #Part C
 dwts <- filter(nbc, Show=="Dancing with the Stars")
 dwts <- mutate(dwts, isConfusing = Q2_Confusing >= 4)
@@ -192,7 +194,7 @@ ggplot(data=boot_dwts) +
 3) Results: The difference in mean ratios between the control and treatment group lies somewhere between -0.091 and -0.013, with 95% confidence. The estimated difference in average revenue ratio between the groups is -0.05 (or a 5% difference). 
 4) Conclusion: The average revenue ratio consistently decreases more for the first group over the other. From this, we can conclude that certain paid search advertising on Google could create extra revenue for EBay. 
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 ebay <- mutate(ebay, rev_ratio = round(rev_after/rev_before, 2))
 ebay$adwords_pause <- as.factor(ebay$adwords_pause)
 boot_ebay = do(10000)*diffmean(rev_ratio ~ adwords_pause, data=resample(ebay))
